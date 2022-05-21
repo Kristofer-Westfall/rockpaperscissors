@@ -1,4 +1,5 @@
 let compChoice = 0;
+const timeOut = setInterval(5000);
 
 const choiceButton = document.querySelectorAll('[data-choice');
 choiceButton.forEach(choiceButton => {
@@ -28,12 +29,25 @@ const options=[{
 }
 ]
 
+function reset(){
+    document.getElementById("youLose").className = "default";
+    document.getElementById("youTie").className = "default";
+    document.getElementById("youWin").className = "default";
+}
+
 function isWinner(choiceName, compChoice) {
-    if (choiceName == compChoice.beats){
-        console.log("you lose!");
-    } else if (choiceName == compChoice.context){
-        console.log("tie!")
+    if (choiceName === compChoice.beats){
+       document.getElementById("youLose").className = "result";
+       setTimeout(reset, 1000);
+        }
+     else if (choiceName === compChoice.context){
+        document.getElementById("youTie").className = "result";
+        setTimeout(reset, 1000);
     } else {
-        console.log("You win!")
+        document.getElementById("youWin").className = "result";
+        setTimeout(reset, 1000);
+
     }
 }
+
+const results = document.getElementsByClassName

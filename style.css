@@ -35,3 +35,20 @@ button {
     background-color: black;
     border-style: none;
 }
+
+#container2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result {
+    color: white;
+    transform: scale(2.0);
+    transition-duration: 2s;
+}
+
+.default{
+    color: black;
+    transition-duration: 2s;
+}
