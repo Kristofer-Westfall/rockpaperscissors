@@ -1,68 +1,52 @@
-let playerScore = 0;
-let computerScore = 0;
-let userInput = 0;
-let computerSelection = 0;
+const choiceButton = document.querySelectorAll('[data-choice');
+choiceButton.forEach(choiceButton => {
+    choiceButton.addEventListener('click', () =>{
+     const choiceName =  choiceButton.dataset.choice;
+     makeChoice(choiceName);
 
-function computerPlay() {
-    computerSelection =  Math.floor(Math.random() * 4) + 1;
-    return computerSelection;
+    })
+})
+let compChoice = 0;
+
+
+function computerChoice(){
+    let i = Math.floor(Math.random() * 3);
+    return compChoice = options[i];
 }
 
-
-function userChoice() {
-    userInput = prompt("Please enter rock, paper, or scissors.");
-    if (userInput == 'rock') {
-        userInput = 1;
-    } else if(userInput == 'paper') {
-        userInput = 2;
-    } else {
-        userInput = 3;
-}
-}
-
-function playGame(){
-    computerPlay();
-    userChoice();
-    if (userInput == 1){
-        if (computerSelection == 1){
-            return('Tie game!!!');
-        } else if (computerSelection == 2){
-            computerScore++;
-            return('Paper beats rock!  You lose!');
-        } else {
-            playerScore++;
-            return('Rock beats scissors!  You win!')
+function choiceAssign(){
+    let choice = function(){
+        if (choiceName == options.context)  {
+            return options.context;
         }
     }
-    if (userInput == 2){
-        if (computerSelection == 2){
-            return('Tie game!!!');
-        }else if (computerSelection == 3){
-            computerScore++;
-            return('Scissors beats paper!  You lose!');
-        } else {
-            playerScore++;
-            return('Paper beats rock!  You win!')
-        }
-    }
-    if (userInput == 3){
-        if (computerSelection == 3){
-            return('Tie game!!!');
-        } else if (computerSelection == 1){
-            computerScore++;
-            return('Rock beats scissors!  You lose!');
-        } else {
-            playerScore++;
-            return('Scissors beats paper!  You win!')
-        }
-    }
- }
+}
 
-function game(){
-    for (let i = 0; i < 5; i++){
-        console.log(playGame());
-        console.log("Player Score: " + playerScore + " Computer Score: " + computerScore);
+function isWinner(choice, compPlay){
+    if (choice.beats === compPlay.context){
+        console.log("You win!");
+    } else{
+        console.log("you lose!");
     }
 }
 
-game();
+const options=[{
+    context: "rock",
+    beats: "scissors",
+},
+{
+    context: "paper",
+    beats: "rock", 
+},
+{
+    context: "scissors",
+    beats: "paper",
+}
+]
+
+function makeChoice(){
+    choiceAssign();
+    const compPlay = computerChoice();
+    const youWin = isWinner(choice, compPlay);
+    const computerWin = isWinner(compPlay, choice);
+}
